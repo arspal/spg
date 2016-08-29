@@ -3,8 +3,7 @@ require 'clipboard'
 eWords = File.readlines('words.txt')
 eWordsLength = []
 nums = [0,1,2,3,4,5,6,7,8,9]
-eWords.each {
-	|line| line.delete!("\n")
+eWords.each { |line| line.delete!("\n")
 	tmp = line.length
 	tmp = tmp - 1
 	eWordsLength <<  tmp
@@ -41,8 +40,7 @@ while true do
 			while true do
 				pwArr = []
 				ind = 1
-				1.upto(5) {
-					charSize = uResp[0].to_i
+				1.upto(5) { charSize = uResp[0].to_i
 					password = ''
 					ii = 1
 				#Randoming words
@@ -96,43 +94,33 @@ while true do
 						while true do
 							uResp2 = gets().chomp
 							case uResp2
-								when '1'
-									File.open('passwords.txt', 'a+') {
-										|file| file << "#{pwArr[0]}\n"
-									}
-									Clipboard.copy(pwArr[0])
-									puts "pw #{pwArr[0]} saved & added to the clipboard"
-									exit
-								when '2'
-									File.open('passwords.txt', 'a+') {
-										|file| file << "#{pwArr[1]}\n"
-									}
-									Clipboard.copy(pwArr[1])
-									puts "pw #{pwArr[1]} saved & added to the clipboard"
-									exit
-								when '3'
-									File.open('passwords.txt', 'a+') {
-										|file| file << "#{pwArr[2]}\n"
-									}
-									Clipboard.copy(pwArr[2])
-									puts "pw #{pwArr[2]} saved & added to the clipboard"
-									exit
-								when '4'
-									File.open('passwords.txt', 'a+') {
-										|file| file << "#{pwArr[3]}\n"
-									}
-									Clipboard.copy(pwArr[3])
-									puts "pw #{pwArr[3]} saved & added to the clipboard"
-									exit
-								when '5'
-									File.open('passwords.txt', 'a+') {
-										|file| file << "#{pwArr[4]}\n"
-									}
-									Clipboard.copy(pwArr[])
-									puts "pw #{pwArr[]} saved & added to the clipboard"
-									exit
-								when uResp2 == "Q" || uResp2 == "q"
-									exit
+							when '1'
+								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[0]}\n" }
+								Clipboard.copy(pwArr[0])
+								puts "pw #{pwArr[0]} saved & added to the clipboard"
+								exit
+							when '2'
+								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[1]}\n" }
+								Clipboard.copy(pwArr[1])
+								puts "pw #{pwArr[1]} saved & added to the clipboard"
+								exit
+							when '3'
+								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[2]}\n" }
+								Clipboard.copy(pwArr[2])
+								puts "pw #{pwArr[2]} saved & added to the clipboard"
+								exit
+							when '4'
+								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[3]}\n" }
+								Clipboard.copy(pwArr[3])
+								puts "pw #{pwArr[3]} saved & added to the clipboard"
+								exit
+							when '5'
+								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[4]}\n" }
+								Clipboard.copy(pwArr[])
+								puts "pw #{pwArr[]} saved & added to the clipboard"
+								exit
+							when uResp2 == "Q" || uResp2 == "q"
+								exit
 							end
 							puts 'Unrecognizable command'
 							print '> '
