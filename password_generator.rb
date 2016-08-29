@@ -15,7 +15,7 @@ puts("Specify the Num. of: Characters/Words or [Q]uit")
 print '> '
 while true do
 	#User input for a number of characters & words
-	uResp = gets().chomp
+	uResp = gets.chomp
 	puts
 	if uResp == "q"
 		exit
@@ -82,7 +82,7 @@ while true do
 				puts "[G]enerate a new bunch/[S]ave password/[Q]uit"
 				print '> '
 				while true do
-					uResp2 = gets().chomp
+					uResp2 = gets.chomp
 					puts
 					if uResp2 == "G" || uResp2 == "g"
 						break
@@ -92,7 +92,7 @@ while true do
 						puts 'Wich one do you like: '
 						print '> '
 						while true do
-							uResp2 = gets().chomp
+							uResp2 = gets.chomp
 							case uResp2
 							when '1'
 								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[0]}\n" }
@@ -133,4 +133,3 @@ while true do
 		end
 	end
 end
-
