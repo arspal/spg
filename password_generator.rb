@@ -8,30 +8,30 @@ eWords.each { |line| line.delete!("\n")
 	tmp = tmp - 1
 	eWordsLength <<  tmp
 }
-#
+
 eWordSize = eWords.size
 uResp = ""
 puts("Specify the Num. of: Characters/Words or [Q]uit")
 print '> '
 while true do
-#User input for a number of characters & words
+	#User input for a number of characters & words
 	uResp = gets().chomp
 	puts
 	if uResp == "q"
 		exit	
 	end
 	uResp = uResp.split('/')
-#initialization
+	#initialization
 	charSize = uResp[0].to_i
 	wordLengthCap = uResp[0].to_i / uResp[1].to_i
 	wordLengthCap.to_i
 	password = ""
-#Checking password length
+	#Checking password length
 	if charSize < uResp[1].to_i
 		puts "Can't do mutch with that, eh ?"
 	elsif charSize < 3
 		puts "Can't do mutch with that, eh ?"
-#---
+	#---
 	else
 		if uResp.size > 2
 			puts "Invalid number of parameters, try again"
