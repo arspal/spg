@@ -18,7 +18,7 @@ while true do
 	uResp = gets().chomp
 	puts
 	if uResp == "q"
-		exit	
+		exit
 	end
 	uResp = uResp.split('/')
 	#initialization
