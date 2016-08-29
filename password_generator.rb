@@ -1,4 +1,13 @@
 require 'clipboard'
+class PW
+  def self.save(pw_ind)
+    @@pw_ind = pw_ind
+    File.open('passwords.txt', 'a+') { |file| file << "#{$pwArr[@@pw_ind]}\n" }
+    Clipboard.copy($pwArr[@@pw_ind])
+    puts "pw #{$pwArr[@@pw_ind]} saved & added to the clipboard"
+    exit
+  end
+end
 #Reading wordlist
 eWords = File.readlines('words.txt')
 eWordsLength = []
@@ -8,16 +17,15 @@ eWords.each { |line| line.delete!("\n")
   tmp = tmp - 1
   eWordsLength <<  tmp
 }
-
 eWordSize = eWords.size
 uResp = ""
 puts("Specify the Num. of: Characters/Words or [Q]uit")
 print '> '
-while true do
+loop {
   #User input for a number of characters & words
   uResp = gets.chomp
   puts
-  if uResp == "q"
+  if uResp == 'q' || uResp == 'Q'
     exit
   end
   uResp = uResp.split('/')
@@ -37,17 +45,18 @@ while true do
       puts "Invalid number of parameters, try again"
       uResp = []
     else
-      while true do
-        pwArr = []
+      loop {
+        $pwArr = []
         ind = 1
-        1.upto(5) { charSize = uResp[0].to_i
+        1.upto(5)  {
+          charSize = uResp[0].to_i
           password = ''
           ii = 1
-        #Randoming words
-          while ii <= uResp[1].to_i do
+          #Randoming words
+          while ii <= uResp[1].to_i
             #if space available for new characters is less than our word length do this instead
             if charSize < wordLengthCap
-              while true do
+              loop {
                 i = rand(1..eWordSize)
                 if eWords[i].length <= charSize
                   password << eWords[i].capitalize
@@ -55,10 +64,10 @@ while true do
                   ii +=1
                   break
                 end
-              end
+              }
             #---
             else
-              while true do
+              loop {
                 i = rand(1..eWordSize)
                 if eWords[i].length <= wordLengthCap
                   password << eWords[i].capitalize
@@ -66,70 +75,46 @@ while true do
                   ii +=1
                   break
                 end
-              end
+              }
             end
           end
-          #filling remaining space with numbers
-          1.upto(charSize) {
-            password << nums.sample.to_s
-          }
-          #stdout the result
-          puts "#{ind}. #{password}"
-          pwArr.push(password)
-          ind +=1
-        }
+        1.upto(charSize) { password << nums.sample.to_s } #filling remaining space with numbers
+        puts "#{ind}. #{password}" #stdout the result
+        $pwArr.push(password)
+        ind +=1
+      }
         puts
         puts "[G]enerate a new bunch/[S]ave password/[Q]uit"
         print '> '
-        while true do
+        loop {
           uResp2 = gets.chomp
           puts
-          if uResp2 == "G" || uResp2 == "g"
+          if uResp2 == 'g' || uResp2 == 'G'
             break
-          elsif uResp2 == "Q" || uResp2 == "q"
+          elsif uResp2 == 'q' || uResp2 == 'Q'
             exit
-          elsif uResp2 == "S" || uResp2 == "s"
+          elsif uResp2 == 's' || uResp2 == 'S'
             puts 'Wich one do you like: '
             print '> '
-            while true do
+            loop {
               uResp2 = gets.chomp
               case uResp2
-              when '1'
-                File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[0]}\n" }
-                Clipboard.copy(pwArr[0])
-                puts "pw #{pwArr[0]} saved & added to the clipboard"
-                exit
-              when '2'
-                File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[1]}\n" }
-                Clipboard.copy(pwArr[1])
-                puts "pw #{pwArr[1]} saved & added to the clipboard"
-                exit
-              when '3'
-                File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[2]}\n" }
-                Clipboard.copy(pwArr[2])
-                puts "pw #{pwArr[2]} saved & added to the clipboard"
-                exit
-              when '4'
-                File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[3]}\n" }
-                Clipboard.copy(pwArr[3])
-                puts "pw #{pwArr[3]} saved & added to the clipboard"
-                exit
-              when '5'
-                File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[4]}\n" }
-                Clipboard.copy(pwArr[4])
-                puts "pw #{pwArr[4]} saved & added to the clipboard"
-                exit
-              when uResp2 == "Q" || uResp2 == "q"
+              when '1'; PW.save(0)
+              when '2'; PW.save(1)
+              when '3'; PW.save(2)
+              when '4'; PW.save(3)
+              when '5'; PW.save(4)
+              when uResp2 == "q" || uResp2 == "Q"
                 exit
               end
               puts 'Unrecognizable command'
               print '> '
-            end
+            }
           end
           puts 'Unrecognizable command'
           print '> '
-        end
-      end
+        }
+      }
     end
   end
-end
+}
