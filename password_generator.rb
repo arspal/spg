@@ -116,8 +116,8 @@ while true do
 								exit
 							when '5'
 								File.open('passwords.txt', 'a+') { |file| file << "#{pwArr[4]}\n" }
-								Clipboard.copy(pwArr[])
-								puts "pw #{pwArr[]} saved & added to the clipboard"
+								Clipboard.copy(pwArr[4])
+								puts "pw #{pwArr[4]} saved & added to the clipboard"
 								exit
 							when uResp2 == "Q" || uResp2 == "q"
 								exit
