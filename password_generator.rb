@@ -94,7 +94,7 @@ loop {
           elsif uResp2 == 'q' || uResp2 == 'Q'
             exit
           elsif uResp2 == 's' || uResp2 == 'S'
-            puts 'Wich one do you like: '
+            puts 'Which one do you like: '
             print '> '
             loop {
               uResp2 = gets.chomp
